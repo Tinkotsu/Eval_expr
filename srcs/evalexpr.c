@@ -12,7 +12,7 @@
 
 #include "header.h"
 #include <stdio.h>
-
+#include <stdlib.h>
 int			g_dig_ar[1000];
 int			g_op_ar[1000];
 int			g_i;
@@ -20,22 +20,17 @@ int			g_k;
 
 void	push_int(char **expr)
 {
-	int check_len;
-
-	if ((**expr == '-' && (g_i == 0 || ((g_dig_ar[g_i - 1] < '0' || g_dig_ar[g_i - 1] > '9')
-						&& (g_dig_ar[g_i + 1] >= '0' && g_dig_ar[g_i + 1] <= '9'))))
-			|| (**expr >= '0' && **expr <= '9'))
+	if ((**expr >= '0' && **expr <= '9') || ((**expr == '-' || **expr == '+')
+	    && (*(*expr + 1) >= '0' && *(*expr + 1) <= '9')
+	    && (g_i == 0 || (*(*expr - 1) < '0' || *(*expr - 1) > '9'))))
 	{
 		g_dig_ar[g_i] = ft_atoi(*expr);
-		check_len = g_dig_ar[g_i];
 		++g_i;
-		if (check_len < 0)
+		if (**expr == '+' || **expr == '-')
 			++(*expr);
-		while (check_len >= 10 || check_len <= -10)
-		{
-			check_len /= 10;
+		while (**expr >= '0' && **expr <= '9')
 			++(*expr);
-		}
+		--(*expr);
 	}
 }
 
@@ -102,7 +97,7 @@ int		eval_expr(char *expr)
 
 	g_i = 0;
 	g_k = 0;
-	while (ft_isspace(*expr))
+	while (*expr == ' ' || *expr == '\t')
 		++expr;
 	while (*expr)
 	{
@@ -110,12 +105,14 @@ int		eval_expr(char *expr)
 		op_int = is_op(*expr);
 		if (op_int)
 		{
-			if (op_int == 7)
-				push_op1(op_int);
-			else
-				push_op2(op_int);
+		    if ((op_int == 1 || op_int == 2) && *(expr - 1) == '(')
+			push_int(&expr);
+		    else if (op_int == 7)
+			push_op1(op_int);
+		    else
+			push_op2(op_int);
 		}
-		++expr;
+	     	++expr;
 	}
 	result();
 	return (g_dig_ar[0]);
