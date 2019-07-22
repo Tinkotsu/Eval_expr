@@ -11,8 +11,7 @@
 /* ************************************************************************** */
 
 #include "header.h"
-#include <stdio.h>
-#include <stdlib.h>
+
 int			g_dig_ar[1000];
 int			g_op_ar[1000];
 int			g_i;
