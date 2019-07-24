@@ -21,7 +21,7 @@ void	push_int(char **expr)
 {
 	if ((**expr >= '0' && **expr <= '9') || ((**expr == '-' || **expr == '+')
 	    && (*(*expr + 1) >= '0' && *(*expr + 1) <= '9')
-	    && (g_i == 0 || (*(*expr - 1) < '0' || *(*expr - 1) > '9'))))
+	    && (g_i == 0 || ((*(*expr - 1) != ')') && (*(*expr - 1) < '0' || *(*expr - 1) > '9')))))
 	{
 		g_dig_ar[g_i] = ft_atoi(*expr);
 		++g_i;
