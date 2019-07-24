@@ -96,8 +96,7 @@ int		eval_expr(char *expr)
 
 	g_i = 0;
 	g_k = 0;
-	while (*expr == ' ' || *expr == '\t')
-		++expr;
+	expr = rm_spaces(expr);
 	while (*expr)
 	{
 		push_int(&expr);

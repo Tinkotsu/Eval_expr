@@ -12,10 +12,24 @@
 
 #include "header.h"
 
-int		ft_isspace(char str)
+char	    g_str_new[1000];
+
+char	    *rm_spaces(char *str)
 {
-	if (str == '\n' || str == '\r' || str == '\f'
-			|| str == '\v' || str == '\t')
-		return (1);
-	return (0);
+    int	    i;
+
+    i = 0;
+    while (*str)
+    {
+	if (*str == '\n' || *str == '\r' || *str == '\f' || *str == ' '
+	    || *str == '\v' || *str == '\t')
+	    ++str;
+	else
+	{
+	    g_str_new[i] = *str;
+	    ++i;
+	    ++str;
+	}
+    }
+    return (&g_str_new[0]);
 }

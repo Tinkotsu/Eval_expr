@@ -16,8 +16,8 @@
 # include <unistd.h>
 
 int						ft_atoi(char *str);
-void					ft_putchar(char c);
-void					ft_putnbr(int nb);
+void						ft_putchar(char c);
+void						ft_putnbr(int nb);
 int						evalexpr(char *expr);
 int						main(int ac, char **av);
 int						is_op(char expr);
@@ -31,5 +31,6 @@ int						check_prio(int cur_op, int prev_op);
 int						do_op(int op, int num2, int num1);
 int						eval_expr(char *expr);
 int						ft_strlen(char *str);
+char						*rm_spaces(char *str);
 
 #endif
