@@ -12,6 +12,22 @@
 
 #include "header.h"
 
+int		check_prio(int cur_op, int prev_op)
+{
+	if (prev_op == 6 || cur_op == 7 || cur_op == 6)
+		return (0);
+	if (prev_op == cur_op)
+		return (1);
+	else if ((cur_op == 1 || cur_op == 2) && (prev_op == 1 || prev_op == 2))
+		return (1);
+	else if (cur_op <= 2 && cur_op > 0 && prev_op >= 3)
+		return (1);
+	else if ((cur_op > 2 && prev_op > 2))
+		return (1);
+	else
+		return (0);
+}
+
 int		is_op(char expr)
 {
 	if (expr == '+')
