@@ -12,6 +12,26 @@
 
 #include "header.h"
 
+int		is_op(char expr)
+{
+	if (expr == '+')
+		return (1);
+	else if (expr == '-')
+		return (2);
+	else if (expr == '*')
+		return (3);
+	else if (expr == '/')
+		return (4);
+	else if (expr == '%')
+		return (5);
+	else if (expr == '(')
+		return (6);
+	else if (expr == ')')
+		return (7);
+	else
+		return (0);
+}
+
 int		do_op(int op, int num2, int num1)
 {
 	if (op == 1)
