@@ -21,15 +21,13 @@ char	    *rm_spaces(char *str)
     i = 0;
     while (*str)
     {
-	if (*str == '\n' || *str == '\r' || *str == '\f' || *str == ' '
-	    || *str == '\v' || *str == '\t')
-	    ++str;
-	else
+	if (*str != '\n' && *str != '\r' && *str != '\f'
+	    && *str != ' ' && *str != '\v' && *str != '\t')
 	{
 	    g_str_new[i] = *str;
 	    ++i;
-	    ++str;
 	}
+	++str;
     }
     return (&g_str_new[0]);
 }
