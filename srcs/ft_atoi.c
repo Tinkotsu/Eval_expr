@@ -14,23 +14,21 @@ char	*clearing(char *str)
 {
 	while ((*str == ' ') || (*str == '\t') || (*str == '\r')
 			|| (*str == '\n') || (*str == '\v') || (*str == '\f'))
-	{
 		str++;
-	}
 	return (str);
 }
 
 int		ft_atoi(char *str)
 {
-	int		i;
+	int		sign;
 	int		n;
 
-	i = 0;
+	sign = 1;
 	n = 0;
 	str = clearing(str);
 	if (*str == '-')
 	{
-		i = 1;
+		sign = -1;
 		str++;
 	}
 	else if (*str == '+')
@@ -40,9 +38,5 @@ int		ft_atoi(char *str)
 		n = 10 * n + (*str - '0');
 		str++;
 	}
-	if (i == 1)
-	{
-		n *= -1;
-	}
-	return (n);
+	return (n * sign);
 }
